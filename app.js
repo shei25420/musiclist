@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session')({
   secret: 'random string here',
   resave: false,
@@ -22,6 +22,7 @@ const User = require('./models/user');
 
 const index = require('./routes/index');
 const api = require('./routes/api');
+const authentication = require('./routes/api/authentication');
 
 const app = express();
 
@@ -62,6 +63,7 @@ app.use(webpackHotMiddleware(webpackCompiler, {
 }));
 
 app.use('/api', api);
+app.use('/api/authentication', authentication);
 app.use('/*', index);
 
 passport.use(new LocalStrategy(User.authenticate()));

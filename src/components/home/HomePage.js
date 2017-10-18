@@ -5,18 +5,22 @@ import SideBar from '../shared/SideBar';
 /**
  * Home
  */
-const showAlert = () => {
-  alert('You Have clicked on the button you fucktard');
-};
 export class HomePage extends PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(props){
+    super(props)
+
+  }
+
   render() {
+    const {increamentFunction, decreamentFunction} = this.props
+
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-12 col-md-8">
-           This is the home page
-
-           <Button onClick={showAlert}>Click Me</Button>
+          <Button onClick={increamentFunction}>Increament</Button>
+          &nbsp;
+          <Button onClick={decreamentFunction}>Decreament</Button>
           </div>
           <SideBar />
         </div>
